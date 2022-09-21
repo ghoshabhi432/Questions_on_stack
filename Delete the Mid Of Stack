@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+void DeleteMidOfStack(stack<int> &st,int cnt,int size){
+    //base case if mid==cnt then delete
+    if(cnt==(size/2)){
+        st.pop();
+        return;
+    }
+    //store the top if not mid:
+    int temp=st.top();
+    st.pop();
+    //recursion call:
+    DeleteMidOfStack(st,cnt+1,size);
+    //add the stored temp to the stack:
+    st.push(temp);
+    
+}
+int main() {
+	// your code goes here
+	
+	stack<int> st;
+	st.push(20);
+	st.push(30);
+	st.push(40);
+	st.push(50);
+
+	DeleteMidOfStack(st,0,st.size());
+	while(st.size()!=0){
+	    cout<<st.top()<<" ";
+	    st.pop();
+	}
+	return 0;
+}
