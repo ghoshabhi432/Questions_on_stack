@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+/*
+algo to sort a stack:
+1)store the value to temp
+2)sort the rest stack
+3)apply sorting insertion with temp data
+*/
+void sortinsert(stack<int> &st,int data){
+    //base case
+    if(st.empty()||st.top()<data){
+        st.push(data);
+        return;
+    }
+    //store temp 
+    int n=st.top();
+    st.pop();
+    //recursive call
+    sortinsert(st,data);
+    //insert the data of temp
+    st.push(n);
+    
+}
+
+void sortstack(stack<int> &st){
+    if(st.empty()){
+        return;
+    }
+    //store the top to temp
+    int temp=st.top();
+    st.pop();
+    //reverse the rest of the stack
+    sortstack(st);
+    //push the temp to end of stack
+    sortinsert(st,temp);
+}
+int main() {
+	// your code goes here
+	stack<int> st;
+	st.push(20);
+	st.push(50);
+	st.push(30);
+	st.push(40);
+	
+	sortstack(st);
+	while(st.size()!=0){
+	    cout<<st.top()<<endl;
+	    st.pop();
+	}
+	return 0;
+}
