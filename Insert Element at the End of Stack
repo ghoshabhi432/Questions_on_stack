@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+void solve(stack<int> &st,int data){
+    //base case
+    if(st.empty()){
+        st.push(data);
+        return;
+    }
+    //store top in temp
+    int temp=st.top();
+    st.pop();
+    //recursive call
+    solve(st,data);
+    //push the stored data
+    st.push(temp);
+}
+int main() {
+	// your code goes here
+	stack<int> st;
+	st.push(20);
+	st.push(30);
+	st.push(40);
+	st.push(50);
+	solve(st,90);
+	while(st.size()!=0){
+	    cout<<st.top()<<endl;
+	    st.pop();
+	}
+	return 0;
+}
